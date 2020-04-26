@@ -11,7 +11,7 @@
 
         <?php
 
-            $access_level = $_GET['level'];
+            include 'level.php'
 
          ?>
 
@@ -41,7 +41,9 @@
                                 <canvas id="efficiency-chart"></canvas>
                             </div>';
                 ?>
-            <?php } ?>
+            <?php } else {
+                echo "<h1>Livello di accesso non riconosciuto.<br>Inserisci un livello di accesso corretto.</h1>";
+            } ?>
             <!-- <div class="chart-container">
                 <canvas id="line-chart"></canvas>
             </div>

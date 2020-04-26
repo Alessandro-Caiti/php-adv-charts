@@ -29,8 +29,6 @@ $(document).ready(function() {
             var pieData = getPieData(rawData);
             var efficiencyData = getEfficiencyData(rawData);
 
-            console.log(efficiencyData);
-
             makeLineChart(lineData.data, months);
             makePieChart(pieData.data, pieData.labels);
             makeEfficiencyChart(efficiencyData.data.Team1, efficiencyData.data.Team2, efficiencyData.data.Team3, months);
