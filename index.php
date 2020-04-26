@@ -9,15 +9,47 @@
     </head>
     <body>
 
+        <?php
+
+            $access_level = $_GET['level'];
+
+         ?>
+
         <div class="container">
-            <div class="chart-container">
+            <?php if ($access_level == 'guest') { ?>
+                <?php
+                    echo   '<div class="chart-container">
+                                <canvas id="line-chart"></canvas>
+                            </div>';
+                ?>
+            <?php } elseif ($access_level == 'employee') { ?>
+                <?php echo '<div class="chart-container">
+                                <canvas id="line-chart"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="pie-chart"></canvas>
+                            </div>';
+                ?>
+            <?php } elseif ($access_level == 'clevel') { ?>
+                <?php echo '<div class="chart-container">
+                                <canvas id="line-chart"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="pie-chart"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="efficiency-chart"></canvas>
+                            </div>';
+                ?>
+            <?php } ?>
+            <!-- <div class="chart-container">
                 <canvas id="line-chart"></canvas>
             </div>
             <div class="chart-container">
                 <canvas id="pie-chart"></canvas>
             </div>
-            <!-- <div class="chart-container">
-                <canvas id="multi-chart"></canvas>
+            <div class="chart-container">
+                <canvas id="efficiency-chart"></canvas>
             </div> -->
         </div>
 

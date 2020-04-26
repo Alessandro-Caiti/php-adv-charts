@@ -19,7 +19,7 @@ $(document).ready(function() {
     //Chiamata AJAX seconda milestone
 
     $.ajax( {
-        url: 'server3.php',
+        url: 'server_database.php',
         method: 'GET',
         success: function (data) {
 
@@ -27,13 +27,9 @@ $(document).ready(function() {
 
             var lineData = getLineData(rawData);
             var pieData = getPieData(rawData);
-            var efficiencyData = getEfficiencyData(rawData);
-
-            console.log(efficiencyData);
 
             makeLineChart(lineData.data, months);
             makePieChart(pieData.data, pieData.labels);
-            makeEfficiencyChart(efficiencyData.data.Team1, efficiencyData.data.Team2, efficiencyData.data.Team3, months);
         },
         error: function (error) {
             alert('Errore');
@@ -43,24 +39,11 @@ $(document).ready(function() {
 
     function getLineData(data) {
         for (var key in data) {
-            if (key == 'fatturato') {
-                if (data[key]['type'] == 'line') {
-                    var lineData = data[key];
-                }
+            if (data[key]['type'] == 'line') {
+                var lineData = data[key];
             }
         }
         return lineData;
-    }
-
-    function getEfficiencyData(data) {
-        for (var key in data) {
-            if (key == 'team_efficiency') {
-                if (data[key]['type'] == 'line') {
-                    var efficiencyData = data[key];
-                }
-            }
-        }
-        return efficiencyData;
     }
 
     function getPieData(data) {
@@ -104,39 +87,6 @@ $(document).ready(function() {
     });
     }
 
-    function makeEfficiencyChart(data1, data2, data3, labels) {
-        var ctx = $('#efficiency-chart');
-        var chart = new Chart(ctx, {
-
-        type: 'line',
-
-        data: {
-            labels: labels,
-            datasets: [{
-                    label: 'Team 1',
-                    backgroundColor: 'rgba(232,232,232,0.3)',
-                    borderColor: 'darkblue',
-                    data: data1
-                },
-                {
-                    label: 'Team 2',
-                    backgroundColor: 'rgba(232,232,232,0.5)',
-                    borderColor: 'powderblue',
-                    data: data2
-                },
-                {
-                    label: 'Team 3',
-                    backgroundColor: 'rgba(232,232,232,0.9)',
-                    borderColor: 'blue',
-                    data: data3
-                }
-            ]
-        },
-
-        options: {}
-    });
-    }
-
     function makePieChart(data, labels) {
         var ctx = $('#pie-chart');
         var chart = new Chart(ctx, {
@@ -148,9 +98,9 @@ $(document).ready(function() {
                 data: data,
                 backgroundColor: [
                     'powderblue',
-                    'darkblue',
-                    'blue',
-                    'aqua'
+                    'lightcoral',
+                    'limegreen',
+                    'darkviolet'
                 ]
             }],
 
