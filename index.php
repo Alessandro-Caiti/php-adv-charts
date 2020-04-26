@@ -16,6 +16,9 @@
             <div class="chart-container">
                 <canvas id="pie-chart"></canvas>
             </div>
+            <!-- <div class="chart-container">
+                <canvas id="multi-chart"></canvas>
+            </div> -->
         </div>
 
 

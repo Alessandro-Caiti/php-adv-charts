@@ -29,7 +29,7 @@ $(document).ready(function() {
             var pieData = getPieData(rawData);
 
             makeLineChart(lineData.data, months);
-            makePieChart(pieData);
+            makePieChart(pieData.data, pieData.labels);
         },
         error: function (error) {
             alert('Errore');
@@ -53,7 +53,18 @@ $(document).ready(function() {
             }
         }
         var pieData = rawPieData.data;
-        return pieData;
+
+        var data = [];
+        var labels = [];
+
+        for (var key in pieData) {
+            data.push(pieData[key])
+            labels.push(key)
+        }
+        return {
+            data: data,
+            labels: labels
+        }
     }
 
     function makeLineChart(data, labels) {
@@ -76,16 +87,7 @@ $(document).ready(function() {
     });
     }
 
-    function makePieChart(piedata) {
-
-        var data = [];
-        var labels = [];
-
-        for (var key in piedata) {
-            data.push(piedata[key])
-            labels.push(key)
-        }
-
+    function makePieChart(data, labels) {
         var ctx = $('#pie-chart');
         var chart = new Chart(ctx, {
 
